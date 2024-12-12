@@ -22,7 +22,7 @@ export default function SKU() {
       {errors.sku && (
         <div className="flex items-center gap-1 text-[13px] text-red-500">
           <MdError />
-          <p>{errors.sku.message}</p>
+          <p>{errors.sku.message as string}</p>
         </div>
       )}
     </div>
