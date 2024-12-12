@@ -81,7 +81,6 @@ export function CategoriesDropDown({
           </Button>
         </PopoverTrigger>
         <PopoverContent className="poppins w-56 p-0" side="bottom" align="end">
-          {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
           <Command>
             <div className="p-1">
               <CommandInput placeholder="Category" />
