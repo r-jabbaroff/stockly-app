@@ -5,16 +5,19 @@ import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProductTable } from "../ProductTable";
 
+import { useLoadProducts } from "@/hooks/useLoadProducts";
 import { useProductStore } from "@/stores/useProductStore";
-import { columns } from "../Columns";
+
+import { Columns } from "../Columns";
 import ProductDialog from "../ProductDialog";
 
-export default function AppTable() {
-  const { allProducts, loadProducts } = useProductStore();
+export default function MainTable() {
+  const { allProducts } = useProductStore();
+  const loadProducts = useLoadProducts();
 
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [loadProducts]);
 
   return (
     <Card className="poppins mt-12 flex flex-col border-none shadow-none max-sm:mt-6 max-sm:p-2">
@@ -31,7 +34,7 @@ export default function AppTable() {
       </CardHeader>
 
       <CardContent className="max-sm:p-2">
-        <ProductTable data={allProducts} columns={columns} />
+        <ProductTable data={allProducts} columns={Columns} />
       </CardContent>
     </Card>
   );

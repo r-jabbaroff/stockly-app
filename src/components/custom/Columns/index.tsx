@@ -80,7 +80,7 @@ const SortableHeader: React.FC<SortableHeaderProps> = ({ column, label }) => {
   );
 };
 
-export const columns: ColumnDef<Product>[] = [
+export const Columns: ColumnDef<Product>[] = [
   {
     accessorKey: "name",
 

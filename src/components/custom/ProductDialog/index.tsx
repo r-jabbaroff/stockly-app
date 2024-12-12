@@ -26,7 +26,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useProductStore } from "@/stores/useProductStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { nanoid } from "nanoid";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Product } from "../Columns";
 import { icons } from "../Icons";
@@ -88,6 +88,13 @@ export default function ProductDialog() {
 
   const { reset } = methods;
 
+  const stableReset = useCallback(
+    (values: ProductFormData) => {
+      reset(values);
+    },
+    [reset],
+  );
+
   const [selectedTab, setSelectedTab] =
     useState<Product["status"]>("Published");
 
@@ -111,8 +118,7 @@ export default function ProductDialog() {
 
   useEffect(() => {
     if (selectedProduct) {
-      // Update form with selectedProduct details when dialog opens
-      reset({
+      stableReset({
         productName: selectedProduct.name,
         sku: selectedProduct.sku,
         supplier: selectedProduct.supplier,
@@ -123,19 +129,17 @@ export default function ProductDialog() {
       setSelectedCategory(selectedProduct.category);
       setSelectedIcon(selectedProduct.icon);
     } else {
-      // Reset form values if no selectedProduct
-      reset({
+      stableReset({
         productName: "",
         sku: "",
         supplier: "",
         quantity: 0,
         price: 0.0,
       });
-
       setSelectedTab("Published");
       setSelectedCategory("Electronics");
     }
-  }, [selectedProduct, openProductDialog]);
+  }, [selectedProduct, openProductDialog, stableReset]);
 
   const onSubmit = async (data: ProductFormData) => {
     if (!selectedProduct) {

@@ -35,7 +35,7 @@ export function ProductCategory({
   useEffect(() => {
     setIsClient(true);
     setSelectedCategory("Electronics");
-  }, []);
+  }, [setSelectedCategory]);
 
   if (!isClient) return null;
 
