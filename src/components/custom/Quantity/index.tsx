@@ -8,6 +8,7 @@ export default function Quantity() {
     register,
     formState: { errors },
   } = useFormContext();
+
   return (
     <div className="flex flex-col gap-2 pt-[6px]">
       <Label htmlFor="quantity" className="text-slate-600">
@@ -23,9 +24,7 @@ export default function Quantity() {
       {errors.quantity && (
         <div className="flex items-center gap-1 text-[13px] text-red-500">
           <MdError />
-          <p>
-            <>{errors.quantity.message}</>
-          </p>
+          <p>{String(errors.quantity.message)}</p>
         </div>
       )}
     </div>
