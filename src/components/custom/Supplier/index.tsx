@@ -23,9 +23,7 @@ export default function Supplier() {
       {errors.supplier && (
         <div className="flex items-center gap-1 text-[13px] text-red-500">
           <MdError />
-          <p>
-            <>{errors.supplier.message}</>
-          </p>
+          <p>{errors.supplier.message as string}</p>
         </div>
       )}
     </div>
