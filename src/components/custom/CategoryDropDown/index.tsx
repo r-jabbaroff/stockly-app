@@ -82,38 +82,40 @@ export function CategoriesDropDown({
         </PopoverTrigger>
         <PopoverContent className="poppins w-56 p-0" side="bottom" align="end">
           <Command className="p-1">
-            <CommandInput placeholder="Category" />
-            <CommandList>
-              <CommandEmpty className="p-5 text-center text-sm text-slate-500">
-                No category found.
-              </CommandEmpty>
-              <CommandGroup>
-                {categories.map((category) => (
-                  <CommandItem className="h-9" key={category.value}>
-                    <Checkbox
-                      checked={selectedCategories.includes(category.value)}
-                      onClick={() => handleCheckboxChange(category.value)}
-                      className="size-4 rounded-[4px]"
-                    />
-                    <div
-                      className={`flex items-center gap-1 rounded-lg p-1 px-3 text-[14px]`}
-                    >
-                      {category.label}
-                    </div>
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </CommandList>
-            <div className="flex flex-col gap-2 text-[23px]">
-              <Separator />
-              <Button
-                onClick={clearFilters}
-                variant={"ghost"}
-                className="mb-1 text-[12px]"
-              >
-                Clear Filters
-              </Button>
-            </div>
+            <>
+              <CommandInput placeholder="Category" />
+              <CommandList>
+                <CommandEmpty className="p-5 text-center text-sm text-slate-500">
+                  No category found.
+                </CommandEmpty>
+                <CommandGroup>
+                  {categories.map((category) => (
+                    <CommandItem className="h-9" key={category.value}>
+                      <Checkbox
+                        checked={selectedCategories.includes(category.value)}
+                        onClick={() => handleCheckboxChange(category.value)}
+                        className="size-4 rounded-[4px]"
+                      />
+                      <div
+                        className={`flex items-center gap-1 rounded-lg p-1 px-3 text-[14px]`}
+                      >
+                        {category.label}
+                      </div>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+              <div className="flex flex-col gap-2 text-[23px]">
+                <Separator />
+                <Button
+                  onClick={clearFilters}
+                  variant={"ghost"}
+                  className="mb-1 text-[12px]"
+                >
+                  Clear Filters
+                </Button>
+              </div>
+            </>
           </Command>
         </PopoverContent>
       </Popover>
